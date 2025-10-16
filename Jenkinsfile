@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/gowdamith/devops-todo-app.git'
+                git branch: 'main', url: 'https://github.com/gowdaamith/devops-todo-app.git'
             }
         }
 
