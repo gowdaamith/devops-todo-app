@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DevOps ToDo App</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; }
+    input, button { padding: 10px; margin: 5px 0; }
+    ul { list-style: none; padding: 0; }
+    li { padding: 5px 0; border-bottom: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+  <h2>DevOps ToDo App</h2>
+
+  <input type="text" id="taskInput" placeholder="Enter a new task" />
+  <button onclick="addTask()">Add Task</button>
+
+  <h3>Tasks:</h3>
+  <ul id="taskList"></ul>
+
+  <script>
+    const apiBase = "http://localhost:5000"; // Flask API base URL
+
+    // Fetch tasks from API and display
+    async function fetchTasks() {
+      const res = await fetch(`${apiBase}/tasks`);
+      const tasks = await res.json();
+      const list = document.getElementById("taskList");
+      list.innerHTML = "";
+      tasks.forEach(t => {
+        const li = document.createElement("li");
+        li.textContent = `${t.id}: ${t.task}`;
+        list.appendChild(li);
+      });
+    }
+
+    // Add a new task via API
+    async function addTask() {
+      const input = document.getElementById("taskInput");
+      const task = input.value.trim();
+      if (!task) return alert("Enter a task!");
+
+      await fetch(`${apiBase}/tasks`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ task })
+      });
+
+      input.value = "";
+      fetchTasks(); // Refresh list
+    }
+
+    // Initial load
+    fetchTasks();
+  </script>
+</body>
+</html>
