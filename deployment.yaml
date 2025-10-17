@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
-metadata: 
-  name: flask-toto-deployment
+metadata:
+  name: flask-todo-deployment
 spec:
-  replica: 2
-  selector: 
-    matchLables: 
+  replicas: 2                           # Must be 'replicas', not 'replica'
+  selector:
+    matchLabels:                        # Must be 'matchLabels', not 'matchLables'
       app: flask-todo
   template:
-    metadata: 
+    metadata:
       labels:
         app: flask-todo
     spec:
@@ -16,5 +16,5 @@ spec:
         - name: flask-todo
           image: gowdaamith/devops-todo-app:latest
           ports:
-            -containernPort: 5000
+            - containerPort: 5000       # Must be 'containerPort', not 'containernPort'
 
