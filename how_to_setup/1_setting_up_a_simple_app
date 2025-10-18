@@ -1,0 +1,97 @@
+Step 1: setup a simple Web App
+
+1.Install prerequisites
+  Python3 
+  pip
+  virtual environment
+
+-----------------------------------------------------------------------
+To  check wheather these are not present or not use these commands'
+
+#check python
+=>python3 --version
+
+
+#Check pip
+==> pip3 --version
+
+#install the virtual environment
+==>sudo apt install python3-virtualenv python3-venv
+
+this installs the virtualenv and the standard  vnev module
+----------------------------------------------------------------------
+ro use built in venv without installing anything
+
+#Create a virtual environment installng anything 
+
+python3 -m venv ~/myenv
+
+#Activate it
+source ~/myenv/bin/activate
+
+#Now you can  use pip inside this virtual environment safely
+pip install <package>
+___________________________________________________________________________________
+
+Why do we need virtual environment
+
+*isolates project dependencies  from system python
+*Prevents conflicts between packages of different project
+*Allows installing packages withour sudo or affectoin the system 
+*make it easy to replicate the environment across the macchine 
+*Lets You safely experiment with different package version
+____________________________________________________________________________________
+
+Create a folder for the Project
+
+==>
+mkdir devops-todo-app
+cd devops-todo-app
+
+Create a virtual environment
+
+python -m venv venv   #This create a folder called venv in your project directory
+                       
+Activate the virtual environment
+
+After creation virtual environment activate it:
+
+source venv/bin/activate
+Your prompt shouldnow change to (venv) vboxuser@ubuntu26:~/devops-todo-app$
+
+then you can install the packages inside it
+
+pip install <packages>
+
+___________________________________________________________________________________
+
+now install the flask inside the environment
+
+==> pip install Flask
+
+Create a app structrure like this
+
+
+devops-todo-app
+|_app.py
+|_requirment.txt
+|_templates/
+   |_index.html
+
+""the code is uploaded in the github"
+
+Create a requirement file 
+
+==> pip freeze > requirements.txt  #pip freeze tell you what's installedd in your environment and is commonly used to 
+                                    to lock dependencies for  a project
+
+Run the app:
+=>python app.py
+
+opne the browser : http://localhost:5000 -> you should seee "welcome to devops"
+
+test the API
+
+curl -X POST http://localhost:5000/tasks -H "Content-Type: application/josn" -d  '{"tasks": "Learn Devops"}'
+curl http://localhost:5000/tasks
+
