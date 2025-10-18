@@ -1,0 +1,43 @@
+Step 4: Dockerizing Your Flask app
+
+We'll create a Dockerfile so jenkins  can build a container image successfully 
+
+
+Create a Dockerfile in your project folder devops-todo-app and push it to the git
+
+name it Dockerfile
+
+--------------------------------------------------------------------------------
+Test the Docker build locally 
+
+docker build -t devops-todo-app:latest .  #tells Docker build a new image from the instruction in your dockerfile
+                                           -t [tag] it gives your image a name and a tag latest
+ (if you donot give the name docker will give a random name which is hard to read name)
+
+docker run -p 5000:5000 devops-todo-app    #This runs a containers
+                                           #This maps the hostport:containersport  next the image name
+then open :
+http://localhost:5000
+
+YOu should see :
+welcome to Devops ToDo App!
+
+if its work its perfect
+_________________________________
+To see the image you have built use the command:
+ 
+==>docker images
+------------------------------------------------------------------------------
+
+
+Rebuild in jenkins
+
+Now go back to your jenkins dashboard  -> open your devops-todo-app  job(pipeline)-> click build again 
+
+This time ,jenkins will:
+1.checkout your code 
+2.install dependencies
+3.build Docker image successsfully 
+4.Push it to Docker HUb 
+
+
