@@ -95,3 +95,13 @@ test the API
 curl -X POST http://localhost:5000/tasks -H "Content-Type: application/josn" -d  '{"tasks": "Learn Devops"}'
 curl http://localhost:5000/tasks
 
+
+
+To exit the virtual environment ,just run 
+=> deactivate
+
+No othere clean up required ,YOu can always reactivate it later with:
+
+source venv/bin/activate 
+
+
