@@ -1,0 +1,37 @@
+Git setUP
+----------
+1.Initialize the Git Repository 
+
+cd devops-todo-app
+==> git init
+
+This will crete a local git repository in your project folder 
+You'll see a hidden  .git folder which will track all the things
+
+2.Create .gitignore file
+
+Some sensitive files should not go to the git (like virtual environment cache )
+This gitignore will prevent us from pushing the sensitive files
+
+3.Stage the file and commit the file
+
+git add .                                              #Stages the file
+git commit -m "initial commit -Flask todo app"         #Save the snapshot with a message
+
+4.Create a Remote Repository (GitHub)
+
+Copy the link of the remote repo adn link local repo to the github
+
+git remote add origin https://github.com/gowdaamith/devops-todo-app.git
+git branch -M main
+git push -u origin main
+
+
+This pushes your local code to github 
+Now Your code is version -controlled and ready for CI/CD
+
+                                        or
+
+You can just create a repo and clone it to the local computer and do all these things later means after creating the repo
+
+
