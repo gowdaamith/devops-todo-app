@@ -1,0 +1,106 @@
+Setting up CICD
+
+This will automate 
+
+1.Pulling the code from github
+2.Installing dependecies
+3.Running tests 
+4.Building a Docker image
+5.Pushing that image to Docker HUB
+
+CI/CD setup with jenkins
+
+install the jenkins 
+
+sudo apt  update
+sudo apt install openjdk-11-jdk -y
+wget -q -o - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian/ binary/> /etc/apt/source.list.d/jenkins.list'
+sudo apt update
+sudo apt install jenkins -y
+
+==>
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+Access it you local ip:
+
+http://localhost:8080
+
+
+Unlock the jenkins
+when you open jenkins for the first time 
+  It will ask for an admnin password 
+  get it using 
+
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword #this path will be in the browser
+
+Copy the content inside the file and paste it in the browser
+Choose the  install the suggested plugin 
+Create a Admin user and finish the setup
+
+Install the plugins :
+
+Go to : 
+Manage Jenkins  -> Plugins -> Available
+
+Install :
+Git
+Docker
+Pipeline
+Blue Ocean
+
+Restart the jenkins after the installation 
+
+4.configure the GitHub Access
+
+Go to your Github repo -> click setting -> developer setting -> Personal Acces Tokens (classic)
+Create a new token with repo and workflow permission 
+Create a new token with repo and workflow permisssion 
+copy the token
+
+in jenkins 
+*Go to the manage jenkins -> credentials -> Global -> Add credentials
+  kind: username and passws
+  Username : you github username
+  Password : github token
+  id : github-creds
+
+Create a jenkins pipeline job:
+1.Go to the Dashboard -> new item -> pipeline
+  Name : Flask-todo-app
+  Click pipeline -> ok
+
+Under Pipeline ->Definition choose 
+>>choose pipeline script form SCM
+  SCM : git
+  Repository URL: your github repo
+  Credentials : github-cred
+  Branch: main
+
+
+
+>>>>>>>>>>>>>>>>>>>>Add Jenkinsfile to your repo
+
+8.Add the docker hub credentials  in jenkins
+  Go to the manange jenkins -> credentials  -> global -> add crednetials
+   *Kind : username and passoword
+   ID: dockerhub-cred
+   Username ; your dockerhub username
+   Password: your docke hub password
+
+commit and PUSH the jenkins file
+-----------------------------------------------------------------------
+Run the jenkins pipeline 
+
+In jenkins : 
+  Open your job : Build now 
+  watcch console log s:
+    it should clone your repo
+    install the dependencies
+    build docker image
+    push the image to the docker hub
+
