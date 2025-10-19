@@ -1,0 +1,93 @@
+DEployment (container orchestration )
+
+Here you'll run the Docker images in a real environment  -either  locally with Docker compose or on a cluster with kubernetes
+
+You hanve two main options:
+
+Option 1: local deployment using Docker compsose 
+
+Why:
+Good for learning  how multi container app works (eX: flask +DB)
+
+steps:
+Create a file docker-compose.yml
+
+version: '3'
+services: 
+  app:
+    images: gowdaamith/devops-todo-app:latest
+    ports:
+      - "5000:5000"
+    restart: always
+run it  
+==>docker-compose up -d 
+
+check 
+http://localhost:5000
+
+you appnow runs via Docker compose
+
+-----------------------------------------------------------------------------------------------------------------------
+
+Kubernetes deploymnent
+
+Why :
+Kubernets shows you real world Devops orchestration 
+
+Step's :
+
+Install minikube:
+==> minikube start
+
+Create a Deployment  and service  YAML file
+**************************************************************************************************************************
+------------------------------------------------------------------------------------------------------------------------
+Deployment file:
+A Deployment file in kubernetes is reponsible for mananging your application  containers  how they are created , updaated and maintained 
+
+Think of it as a manager that ensurese
+*The right number of containers replicas are always running
+*if a containers crashes it gets restarted automaically 
+*if you update the image ,old pods are replaced gracefully
+
+What these menans in deployment file:
+
+key 
+
+replicas: 2                  Runs 2 instances (pods) of your app
+selector                     Tells Deployment which pods it manages
+template                     Defines the pod's sturctures (container,images,ports)
+image                        The docker image to runf
+containerPort                The port your app listens on inside the container
+
+In short the deployment creates and maintain pods 
+
+------------------------------------------------------------------------------------------------------------------------
+Service file
+
+Purpose
+A services in kubernetes  provides  a stable network endpoint (ip and port) to access your application even if pods keeip changing
+
+Because pods are temporary ,their IP'S  changes ,the services gives you a permanenet way to access your app
+ 
+Keys 
+
+selector                matches pods with app: flask-app label
+port: 80                External port exposed to users
+targetPor: 5000         Internal port  inside the containerss
+type: LoadBalancer      Exposes your appp to the internet through cloud load balancer
+
+The service exposess your pods to user ro other apps
+
+------------------------------------------------------------------------------------------------------------------------
+***********************************************************************************************************************
+Apply both:
+
+kubectl apply -f deployment.yaml
+kubectl apply -f servicel.yaml
+
+Access your app:
+
+minikube service flask-todo-services
+
+Now your app runs in kubernetes with 2 replicas (autoscalling and loadbalancing)
