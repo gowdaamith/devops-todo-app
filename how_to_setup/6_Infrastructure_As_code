@@ -1,0 +1,49 @@
+You can auttomate the provisioning of infrastructure using Terraform
+
+Example :
+Create an Ec2 instance 
+Install  Docker and jenkins autoamaticallly
+Deploy your app using terraform
+
+
+how to create the infrasturcture:
+
+Create a terraform folder in the devops-todo-app  
+  -=>write the terraform files inside 
+
+run these commnads inside that folder
+
+terraform init                    #perrequisite you must have configured the terraform 
+terraform plan     
+terraform apply                 
+
+There will be some errors you should solve it and create the infrasturcture
+
+AFter the terraform created the ec2 you should log into it and check whether the 
+
+Docker and jenkins are installed or not (you should add them in your user_data)
+
+docker --version
+sudo systemctl status docker
+
+jenksin --version
+sudo systemctl status jenkins
+
+then open your browser and go to 
+
+https://<your public iip> :8080
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+==> Retrieve the jenkins admin passsword 
+      Paste it in the browser
+      Install the suggested plugin 
+      Login as admin user
+     Then you're inside jenkins dashboard 
+
+Atlast you can cleanupu the resources by applying 
+
+terraform destroy
+
+
