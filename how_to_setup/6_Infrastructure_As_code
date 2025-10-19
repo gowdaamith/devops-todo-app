@@ -45,5 +45,14 @@ https://<your public iip> :8080
 Atlast you can cleanupu the resources by applying 
 
 terraform destroy
+************************************************************************************************************************
+
+if you want to runn the web-app run the docker comman
+
+sudo docker run -d -p 5000:5000 gowdaaamith/devops-todo-app:latest
+
+http://your-public-ip:5000
+
+you can acces the appp
 
 
