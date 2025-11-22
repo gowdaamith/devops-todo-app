@@ -1,0 +1,75 @@
+Project Goal :
+
+Create a complete Devops workflow for a small web application (Devops-to-do-app) that include versioning control ,automated builds ,tests,coontainerization ,deployment,monitoring and infrastructure automation
+
+Step 1: Automation setup
+
+*Tech stack: Python (Flask)
+*A very simple web app 
+*Keep code in Github
+
+This is the source code that devops pipeline will handle
+
+Step 2: Version control
+
+*Push code to Github
+*Branching stratergy : main for prodution and dev for development
+
+Purpose : practicing git and braching work flow
+
+Step 3: CI/CD pipeline with jenkins
+*Continuous integration:
+
+Jenkins pull code  from github on every push
+Runs unit test
+Build Docker Image if tets pass
+
+*Continuous Deployment
+
+Push Docker image to Docker hub or ECR
+Deploy to Kubernetes Cluster or Docker compose
+
+Purpose : learn CI/CD workflow end to end
+
+Step 4: Containerization
+
+Dockerize the web app
+  Docker file for the app
+  docker-compose.yml if you want local container setup
+
+Purpose : learn how to package apps as containers for consistent deployment
+
+Step 5: Orcheestration (optional ,but recommendecd)[Here we are not doing this as it would cost the money]
+
+Deploy containers on kubernetes 
+use helm charts for easy deployment
+
+Step 6: Infrastructure as Code
+
+*use Terraform or cloudFormation to provision
+    use ec2 or containers service
+    s3 bucket for storage
+    Networking components(vpc ,subnet)
+
+Purpose: Automating infrasturcture deployment
+
+Step 7: Monitoring and logging
+
+*Add prometheuse and grafanan for metrics
+*use ELK or cloudwatch for logs
+
+Purpose : Observability in Devops pipeline
+
+Step 8: Notification and Alerts
+
+Configure the jenkins to send slack or email notification on build/deploy failure
+
+Purpose : learing real world Devops notification
+
+Step 9 : Optional Extras
+  
+Security scannign with Sonarqube or Trivy for Docker images
+Auto scaling rules in Kubernetse
+Blue greeen Deployment in ci/cd
+
+.
